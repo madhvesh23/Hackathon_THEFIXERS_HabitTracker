@@ -1,0 +1,18 @@
+.App-link {
+  margin: 0 10px;
+  color: #61dafb;
+  text-decoration: none;
+}
+
+.App-link:hover {
+  text-decoration: underline;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+}
+
+main {
+  padding: 20px;
+}
