@@ -19,13 +19,13 @@ const Login = () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log("User logged in:", userCredential.user);
-
+      toast.success("Login successful!", {
+        position: "top-right",
+        autoClose: 2000, // Show toast for 2 seconds
+      });
       // Delay navigation and hide spinner after 2 seconds
       setTimeout(() => {
-        toast.success("Login successful!", {
-          position: "top-right",
-          autoClose: 2000, // Show toast for 2 seconds
-        });
+        
         setLoading(false); // Stop spinner after delay
         navigate("/"); // Navigate to Home page
       }, 2000);
