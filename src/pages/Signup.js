@@ -1,44 +1,53 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../firebase"; // Ensure the correct imports
-import { doc, setDoc } from "firebase/firestore"; // Firestore functions
-import LoadingSpinner from "../components/LoadingSpinner"; // Import spinner component
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { auth, db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Signup = () => {
-  const [name, setName] = useState(""); // Full name state
-  const [email, setEmail] = useState(""); // Email state
-  const [password, setPassword] = useState(""); // Password state
-  const [confirmPassword, setConfirmPassword] = useState(""); // Confirm Password state
-  const [loading, setLoading] = useState(false); // Loading state
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    // Basic password validation
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      toast.error("Passwords do not match!", { position: "top-right" });
       return;
     }
 
-    setLoading(true); // Start loading spinner
+    setLoading(true);
     try {
-      // Create user in Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Save user data to Firestore
       await setDoc(doc(db, "users", user.uid), {
         fullName: name,
         email: user.email,
         createdAt: new Date(),
       });
 
-      alert("Signup successful!");
+     
+
+      // Delay spinner and navigate to login after 2 seconds
+      setTimeout(() => {
+        toast.success("Signup successful!", {
+          position: "top-right",
+          autoClose: 2000, // Show toast for 2 seconds
+        });
+        setLoading(false); // Stop spinner
+        navigate("/login"); // Navigate to Login page
+      }, 2000);
     } catch (error) {
       console.error("Error during signup:", error.message);
-      alert(error.message);
-    } finally {
-      setLoading(false); // Stop loading spinner
+      toast.error(error.message, { position: "top-right" });
+      setLoading(false); // Stop spinner immediately on error
     }
   };
 
@@ -55,7 +64,7 @@ const Signup = () => {
                 type="text"
                 placeholder="Full Name"
                 value={name}
-                onChange={(e) => setName(e.target.value)} // Update name state
+                onChange={(e) => setName(e.target.value)}
                 required
               />
             </label>
@@ -67,7 +76,7 @@ const Signup = () => {
                 type="email"
                 placeholder="Email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)} // Update email state
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </label>
@@ -79,7 +88,7 @@ const Signup = () => {
                 type="password"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} // Update password state
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </label>
@@ -91,7 +100,7 @@ const Signup = () => {
                 type="password"
                 placeholder="Confirm Password"
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)} // Update confirm password state
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
             </label>

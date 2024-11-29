@@ -1,21 +1,38 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase"; // Adjust the path based on your file structure
-import "./Auth.css"
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { auth } from "../firebase";
+import LoadingSpinner from "../components/LoadingSpinner";
+import "./Auth.css";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true); // Show spinner
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log("User logged in:", userCredential.user);
-      alert("Login successful!");
+
+      // Delay navigation and hide spinner after 2 seconds
+      setTimeout(() => {
+        toast.success("Login successful!", {
+          position: "top-right",
+          autoClose: 2000, // Show toast for 2 seconds
+        });
+        setLoading(false); // Stop spinner after delay
+        navigate("/"); // Navigate to Home page
+      }, 2000);
     } catch (error) {
       console.error("Error during login:", error.message);
-      alert(error.message); // Display error message to the user
+      toast.error(error.message, { position: "top-right" });
+      setLoading(false); // Stop spinner immediately on error
     }
   };
 
@@ -31,8 +48,8 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Email"
-                value={email} // Bind to state
-                onChange={(e) => setEmail(e.target.value)} // Update state
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </label>
@@ -43,14 +60,14 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Password"
-                value={password} // Bind to state
-                onChange={(e) => setPassword(e.target.value)} // Update state
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </label>
           </div>
-          <button type="submit" className="auth-button">
-            Login
+          <button type="submit" className="auth-button" disabled={loading}>
+            {loading ? <LoadingSpinner /> : "Login"}
           </button>
         </form>
         <p className="alt-action">
