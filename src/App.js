@@ -10,8 +10,12 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Logout from "./components/Logout"; // Import Logout component
 import "./App.css";
+import Dashboard from './pages/Dashboard';
+
+
 
 function App() {
+  return <Dashboard />;
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Track authentication state
   const [loading, setLoading] = useState(true); // Loading state during auth check
 

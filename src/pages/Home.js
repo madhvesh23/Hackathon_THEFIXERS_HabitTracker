@@ -1,30 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Home.css';
 
-const Home = () => {
-  const getMotivationalQuote = () => {
-    const quotes = [
-      "Success is the sum of small efforts, repeated day in and day out.",
-      "What you do today can improve all your tomorrows.",
-      "The secret of getting ahead is getting started.",
-      "Your future is created by what you do today, not tomorrow.",
-    ];
-    return quotes[Math.floor(Math.random() * quotes.length)];
-  };
-
-  // Example habits data
-  const [habits, setHabits] = useState([
-    { id: 1, name: 'Drink Water', completed: true },
-    { id: 2, name: 'Exercise', completed: false },
-    { id: 3, name: 'Read a Book', completed: true },
-    { id: 4, name: 'Meditate', completed: true },
-    { id: 5, name: 'Journal', completed: false },
-  ]);
-
+const Home = ({ habits }) => {
   // Calculate progress
   const totalHabits = habits.length;
   const completedHabits = habits.filter((habit) => habit.completed).length;
-  const progress = (completedHabits / totalHabits) * 100;
+  const progress = totalHabits > 0 ? (completedHabits / totalHabits) * 100 : 0;
 
   return (
     <div className="home-container">
@@ -34,12 +15,6 @@ const Home = () => {
       </div>
 
       <div className="dashboard">
-        {/* Motivational Quote */}
-        <div className="quote">
-          <h2>Motivational Quote of the Day:</h2>
-          <p>"{getMotivationalQuote()}"</p>
-        </div>
-
         {/* Weekly Progress */}
         <div className="habit-progress">
           <h2>Weekly Progress</h2>
@@ -54,9 +29,6 @@ const Home = () => {
         </div>
 
         {/* Habit Checklist */}
-
-        {/* (completedHabits / totalHabits) * 100 */}
-
         <div className="habit-checklist">
           <h2>Today's Habits</h2>
           <ul className="habit-list">
@@ -65,15 +37,7 @@ const Home = () => {
                 <input
                   type="checkbox"
                   checked={habit.completed}
-                  onChange={() => {
-                    setHabits((prevHabits) =>
-                      prevHabits.map((h) =>
-                        h.id === habit.id
-                          ? { ...h, completed: !h.completed }
-                          : h
-                      )
-                    );
-                  }}
+                  readOnly
                 />
                 {habit.name}
               </li>

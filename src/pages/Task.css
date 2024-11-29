@@ -1,0 +1,104 @@
+/* Container Styles */
+.task-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .task-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Input Section */
+  .task-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .task-input input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+  }
+  
+  .task-input button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .task-input button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Chart Section */
+  .chart-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    height: 300px;
+  }
+  
+  /* Task List */
+  .task-list {
+    margin-top: 20px;
+  }
+  
+  .task-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .task-item h3 {
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  .task-completion {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .task-completion label {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Delete Button */
+  .delete-button {
+    align-self: flex-end;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: darkred;
+  }
+  
+  /* No Tasks Placeholder */
+  .no-tasks {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+  }
+  
