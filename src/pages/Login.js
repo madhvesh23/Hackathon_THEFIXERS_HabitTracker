@@ -1,22 +1,31 @@
 import React from 'react';
+import './Auth.css';
 
 const Login = () => {
   return (
-    <div>
-      <h1>Login</h1>
-      <form>
-        <label>
-          Email:
-          <input type="email" placeholder="Enter your email" />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" placeholder="Enter your password" />
-        </label>
-        <br />
-        <button type="submit">Login</button>
-      </form>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h1>Habit Tracker</h1>
+        <p className="tagline">Track your habits, achieve your goals!</p>
+        <form>
+          <div className="form-group">
+            <label>
+              <i className="fa fa-envelope"></i>
+              <input type="email" placeholder="Email" />
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <i className="fa fa-lock"></i>
+              <input type="password" placeholder="Password" />
+            </label>
+          </div>
+          <button type="submit" className="auth-button">Login</button>
+        </form>
+        <p className="alt-action">
+          Don't have an account? <a href="/signup">Sign up</a>
+        </p>
+      </div>
     </div>
   );
 };
