@@ -1,0 +1,86 @@
+/* Home Page Styles */
+.home-container {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+    color: #333;
+    min-height: 100vh;
+  }
+  
+  .welcome-section {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .welcome-section h1 {
+    font-size: 32px;
+    color: #4a4a4a;
+  }
+  
+  .welcome-section p {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  /* Dashboard */
+  .dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .quote, .habit-progress, .habit-calendar, .rewards {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    text-align: center;
+    width: 300px;
+  }
+  
+  .quote h2, .habit-progress h2, .habit-calendar h2, .rewards h2 {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .quote p {
+    font-style: italic;
+    color: #666;
+  }
+  
+  /* Progress Bar */
+  .progress-bar {
+    background: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 20px;
+    margin-top: 10px;
+  }
+  
+  .progress {
+    background: #6a5acd;
+    height: 100%;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  /* Placeholder Calendar */
+  .calendar-placeholder {
+    background: #f9f9f9;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    color: #ccc;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+  }
+  
+  /* Rewards */
+  .rewards p {
+    font-size: 16px;
+    color: #666;
+  }
+  
